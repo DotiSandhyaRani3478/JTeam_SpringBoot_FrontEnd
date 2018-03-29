@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Add New User</h1>
+    <hr>
+    <br>
+    <form  (ngSubmit)="userRegisterForm()">
+      <div class="form group">
+          <label for="name"><b>Name</b></label>
+          <input type="text" name="name" class="form-control" required [(ngModel)]="user.name">
+      </div><br>
+        <div class="form group">
+            <label for="user_name"><b>UserName</b></label>
+            <input type="text" class="form-control" required minlength="5" maxlength="30" [(ngModel)]="user.user_name" name="user_name" #user_name="ngModel">
+            <div *ngIf="user_name.errors && (user_name.dirty || user_name.touched)" class ="alert alert-danger">
+              <div [hidden]="!user_name.errors.required">
+                user name is required!
+              </div>
+              <div>
+              user name must be at 5 characters long!
+            </div>
+        </div>
+      </div>
+        <br>
+
+        <div class="form group">
+            <label for="email_id"><b>Email Id</b></label>
+            <input type="text" name="email_id" class="form-control" [(ngModel)]="user.email_id">
+        </div><br>
+        <div class="form group">
+            <label for="role"><b>Role</b></label>
+            <select name="role" [(ngModel)]="user.role">
+                <option *ngFor="let pt of role">{{pt}}</option>
+            </select>
+        </div>
+        <br/>
+        <div class="form group">
+            <label for="password"><b>Password</b></label>
+            <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
+        </div><br>
+        <div class="form group">
+            <label for="confirm_password"><b>Confirm Password</b></label>
+            <input type="password" name="confirm_password" class="form-control" [(ngModel)]="user.confirm_password">
+        </div><br>
+
+        <input type="submit"  value="Register" class="btn btn-success">
+      </form>
+  </div>
